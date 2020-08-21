@@ -1,0 +1,316 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  overflow-x: hidden;
+}
+
+section {
+  width: 100vw;
+  height: 100vh;
+}
+
+.first {
+  background-color: rgb(167, 35, 61);
+  .carusel {
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    position: relative;
+    margin: 0 auto;
+    .carusel-button {
+      position: absolute;
+      height: 40px;
+      width: 40px;
+      background-color: black;
+      z-index: 1;
+      cursor: pointer;
+      box-shadow: inset rgba(0, 0, 0, 0.6) 0 -2px 5px,
+        inset rgba(252, 255, 255, 0.7) 0 2px 5px,
+        rgba(0, 0, 0, 0.596) 0 2px 5px 2px;
+    }
+
+    .left,.right{
+        top: 50%;
+    }
+    .left {
+      left: 2%;
+    }
+    .right {
+      right: 2%;
+    }
+
+    .carusel-items {
+      width: 100vw;
+      height: 100vh;
+      position: relative;
+      transition: 1s;
+      display: flex;
+      left: 0;
+      .carousel-block {
+        float: left;
+        width: 100vw;
+        height: 100vh;
+        display: block;
+        flex-shrink: 0;
+      }
+
+      .two {
+        background-color: rgb(25, 94, 126);
+      }
+      .three {
+        background-color: rgb(80, 28, 87);
+      }
+    }
+  }
+}
+
+.second {
+  background-color: royalblue;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  flex-wrap: wrap;
+  img {
+    margin: 5%;
+    width: 5%;
+    max-width: 100px;
+    transform: translate(0, 0);
+    transition: 0.1s all;
+  }
+}
+
+.third {
+  background-color: goldenrod;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  position: relative;
+
+  .modal {
+    width: 410px;
+    height: 155px;
+    position: absolute;
+    background-color: gainsboro;
+    box-shadow: inset rgba(0, 0, 0, 0.6) 0 -2px 5px,
+      inset rgba(252, 255, 255, 0.7) 0 2px 5px,
+      rgba(0, 0, 0, 0.8) 0 2px 5px -1px;
+    transform: translate(0, -65vh);
+    transition: all 0.7s;
+    p {
+      font-size: 20px;
+      width: 77%;
+      font-family: monospace;
+      font-weight: bolder;
+      display: block;
+      margin: auto;
+      position: absolute;
+      top: 30%;
+      left: 50%;
+      margin-right: -50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+    }
+
+    button {
+      margin-left: auto;
+      display: block;
+      position: absolute;
+      top: 75%;
+      left: 50%;
+      margin-right: -50%;
+      transform: translate(-50%, -50%);
+      width: 55px;
+      height: 25px;
+      cursor: pointer;
+    }
+  }
+  .form-wraper {
+    width: 530px;
+    height: 400px;
+    position: relative;
+    transform: translate(0, 0);
+    transition: all 0.8s;
+    h1 {
+      text-transform: capitalize;
+      text-align: center;
+      font-family: monospace;
+      margin-top: 2%;
+      font-size: 20px;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    #name,
+    #email,
+    #message,
+    button {
+      width: 80%;
+      height: 25px;
+      text-align: center;
+      margin: 2%;
+      border: none;
+      border-radius: 5px;
+      box-shadow: inset 1px 1px 5px grey;
+      transition: all 0.2s;
+      transform: translate(0, 0);
+    }
+
+    #message {
+      height: 195px;
+      box-shadow: inset 1px 1px 10px grey;
+      resize: none;
+      text-align: left;
+      padding: 2%;
+    }
+
+    button {
+      width: 55px;
+      height: 25px;
+      box-shadow: 0px 0px 5px 0px #808080ab;
+      background: #efefef;
+      cursor: pointer;
+      border: none;
+    }
+
+    .wraper {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      z-index: 1;
+      background-color: gainsboro;
+      box-shadow: inset rgba(0, 0, 0, 0.6) 0 -2px 5px,
+        inset rgba(252, 255, 255, 0.7) 0 2px 5px,
+        rgba(0, 0, 0, 0.8) 0 2px 5px -1px;
+      border-radius: 20px;
+    }
+  }
+}
+
+@media screen and (max-device-width: 480px) {
+  .first .carusel .carusel-button {
+    width: 6vw;
+    height: 6vw;
+  }
+  .second img {
+    width: 8vw;
+    margin: 9vw;
+  }
+
+  .third {
+    .form-wraper {
+      width: 80%;
+      height: 330px;
+      h1 {
+        font-size: 14px;
+      }
+
+      #name,
+      #email {
+        height: 25px;
+      }
+      #message {
+        height: 160px;
+      }
+
+      button {
+        width: 50px;
+        height: 24px;
+      }
+    }
+    .modal {
+      width: 260px;
+      height: 115px;
+      transform: translate(0, -70vh);
+      p {
+        font-size: 15px;
+        width: 90%;
+      }
+      button {
+        width: 50px;
+        height: 24px;
+      }
+    }
+  }
+}
+
+@media screen and (max-device-width: 853px) and (orientation: landscape) {
+  .first .carusel .carusel-button {
+    width: 6vh;
+    height: 6vh;
+  }
+  .second img {
+    width: 11vh;
+  }
+  .third {
+    .form-wraper {
+      width: 300px;
+      height: 310px;
+
+      .wraper{
+        border-radius: 10px;
+      }
+      h1 {
+        font-size: 14px;
+      }
+      #name,
+      #email {
+        height: 25px;
+      }
+      #message {
+        height: 160px;
+      }
+      button {
+        width: 50px;
+        height: 24px;
+      }
+    }
+    .modal {
+      width: 260px;
+      height: 115px;
+      transform: translate(0, -70vh);
+      p {
+        font-size: 15px;
+        width: 90%;
+      }
+      button {
+        width: 50px;
+        height: 24px;
+      }
+    }
+  }
+}
+
+
+@media screen and (max-device-width: 769px){
+      .third {
+        .form-wraper {
+          width: 350px;
+          height: 370px;
+          .wraper{
+            border-radius: 10px;
+          }
+        }
+        .modal {
+          width: 350px;
+          transform: translate(0, -70vh);
+          p {
+            font-size: 18px;
+            width: 90%;
+          }
+          button {
+            width: 50px;
+            height: 24px;
+          }
+        }
+      }
+}
