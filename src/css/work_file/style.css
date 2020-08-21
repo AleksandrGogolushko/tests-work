@@ -167,6 +167,8 @@ section {
     height: 330px; }
     .third .form-wraper h1 {
       font-size: 14px; }
+    .third .form-wraper #name {
+      margin-top: 4%;}
     .third .form-wraper #name,
     .third .form-wraper #email {
       height: 25px; }
