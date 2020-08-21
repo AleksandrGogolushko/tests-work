@@ -218,10 +218,10 @@ section {
       width: 50px;
       height: 24px; } }
 
-@media screen and (max-device-width: 769px) {
+@media screen and (min-device-width: 480px) and (max-device-width: 769px){
   .third .form-wraper {
     width: 350px;
-    height: 370px; }
+     }
     .third .form-wraper .wraper {
       border-radius: 10px; }
   .third .modal {
