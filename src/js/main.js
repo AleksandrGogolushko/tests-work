@@ -41,16 +41,18 @@ $("#right").click((e) => { moveCarusel(e) })
 function moveCarusel(e) {
     let pos = $(document).width();
     if ($(e.target).attr("id") == "left") {
-        if (caruselSlide != 0) {
-            if (caruselSlide == 2) {
-                $(".carusel-items").animate({ left: `${-pos}` }, 50)
-                caruselSlide = 1;
-            } else {
-                $(".carusel-items").animate({ left: `${0}` }, 50)
-                caruselSlide = 0
-            }
-            checkSelect("select", ".navigation", caruselSlide)
+        if (caruselSlide == 0) {
+            $(".carusel-items").animate({ left: `${-pos * 2}` }, 50);
+            caruselSlide = 2;
+        } else if (caruselSlide == 2) {
+            $(".carusel-items").animate({ left: `${-pos}` }, 50)
+            caruselSlide = 1;
+        } else {
+            $(".carusel-items").animate({ left: `${0}` }, 50)
+            caruselSlide = 0
         }
+        checkSelect("select", ".navigation", caruselSlide)
+
     } else {
         if (caruselSlide == 0) {
             $(".carusel-items").animate({ left: `${-pos}` }, 50);
@@ -106,7 +108,7 @@ let validationState = {
 }
 
 $("#name").change(() => {
-   validationInput("name", "email", /[a-z]*[a-zA-Z][^\W*\d]{1,15}$/g, "Name must contain only letters!")
+    validationInput("name", "email", /[a-z]*[a-zA-Z][^\W*\d]{1,15}$/g, "Name must contain only letters!")
 })
 
 $("#email").change(() => {
