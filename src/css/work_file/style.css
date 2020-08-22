@@ -18,37 +18,59 @@ section {
     overflow: hidden;
     position: relative;
     margin: 0 auto; }
-    .first .carusel .carusel-button {
+    .first .carusel .navigation {
+      width: 12%;
+      height: 8%;
       position: absolute;
-      height: 40px;
-      width: 40px;
-      background-color: black;
+      bottom: 0;
+      left: 50%;
+      margin-right: -50%;
+      transform: translate(-50%, 0);
       z-index: 1;
-      cursor: pointer;
-      box-shadow: inset rgba(0, 0, 0, 0.6) 0 -2px 5px, inset rgba(252, 255, 255, 0.7) 0 2px 5px, rgba(0, 0, 0, 0.596) 0 2px 5px 2px; }
-    .first .carusel .left, .first .carusel .right {
-      top: 50%; }
-    .first .carusel .left {
-      left: 2%; }
-    .first .carusel .right {
-      right: 2%; }
-    .first .carusel .carusel-items {
+      display: flex;
+      justify-content: space-around;
+      align-items: center; }
+      .first .carusel .navigation .first-block, .first .carusel .navigation .second-block, .first .carusel .navigation .third-block {
+        width: 15%;
+        height: 10%;
+        background-color: black;
+        cursor: pointer;
+        transition: 0.2s all; }
+        .first .carusel .navigation .first-block:hover, .first .carusel .navigation .second-block:hover, .first .carusel .navigation .third-block:hover {
+          height: 20%; }
+      .first .carusel .navigation .select {
+        height: 20%; }
+  .first .carusel-button {
+    position: absolute;
+    height: 40px;
+    width: 40px;
+    background-color: black;
+    z-index: 1;
+    cursor: pointer;
+    box-shadow: inset rgba(0, 0, 0, 0.6) 0 -2px 5px, inset rgba(252, 255, 255, 0.7) 0 2px 5px, rgba(0, 0, 0, 0.596) 0 2px 5px 2px; }
+  .first #left, .first #right {
+    top: 50%; }
+  .first #left {
+    left: 2%; }
+  .first #right {
+    right: 2%; }
+  .first .carusel-items {
+    width: 100vw;
+    height: 100vh;
+    position: relative;
+    transition: 0.8s;
+    display: flex;
+    left: 0; }
+    .first .carusel-items .carousel-block {
+      float: left;
       width: 100vw;
       height: 100vh;
-      position: relative;
-      transition: 1s;
-      display: flex;
-      left: 0; }
-      .first .carusel .carusel-items .carousel-block {
-        float: left;
-        width: 100vw;
-        height: 100vh;
-        display: block;
-        flex-shrink: 0; }
-      .first .carusel .carusel-items .two {
-        background-color: #195e7e; }
-      .first .carusel .carusel-items .three {
-        background-color: #501c57; }
+      display: block;
+      flex-shrink: 0; }
+    .first .carusel-items .two {
+      background-color: #195e7e; }
+    .first .carusel-items .three {
+      background-color: #501c57; }
 
 .second {
   background-color: royalblue;
@@ -109,6 +131,26 @@ section {
     position: relative;
     transform: translate(0, 0);
     transition: all 0.8s; }
+    .third .form-wraper .error-message {
+      width: 80%;
+      height: 18%;
+      position: absolute;
+      left: 50%;
+      margin-right: -50%;
+      transform: translate(-50%, 10%);
+      transition: 0.5s all;
+      background-color: gainsboro;
+      box-shadow: inset rgba(0, 0, 0, 0.6) 0 -2px 5px, inset rgba(252, 255, 255, 0.7) 0 2px 5px, rgba(0, 0, 0, 0.8) 0 2px 5px -1px;
+      border-radius: 10px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center; }
+      .third .form-wraper .error-message p {
+        font-family: monospace;
+        font-size: 15px;
+        width: 90%;
+        font-weight: bold; }
     .third .form-wraper h1 {
       text-transform: capitalize;
       text-align: center;
@@ -156,6 +198,9 @@ section {
       border-radius: 20px; }
 
 @media screen and (max-device-width: 480px) {
+  .first .carusel .navigation {
+    width: 25%;
+    height: 8%; }
   .first .carusel .carusel-button {
     width: 6vw;
     height: 6vw; }
@@ -164,11 +209,11 @@ section {
     margin: 9vw; }
   .third .form-wraper {
     width: 80%;
-    height: 330px; }
+    height: 318px; }
     .third .form-wraper h1 {
       font-size: 14px; }
     .third .form-wraper #name {
-      margin-top: 4%;}
+      margin-top: 4%; }
     .third .form-wraper #name,
     .third .form-wraper #email {
       height: 25px; }
@@ -177,6 +222,15 @@ section {
     .third .form-wraper button {
       width: 50px;
       height: 24px; }
+    .third .form-wraper .error-message {
+      width: 98%;
+      height: 20%;
+      transform: translate(-50%, 10%); }
+      .third .form-wraper .error-message p {
+        font-family: monospace;
+        font-size: 14px;
+        width: 95%;
+        font-weight: bold; }
   .third .modal {
     width: 260px;
     height: 115px;
@@ -209,6 +263,8 @@ section {
     .third .form-wraper button {
       width: 50px;
       height: 24px; }
+    .third .form-wraper .error-message {
+      display: none; }
   .third .modal {
     width: 260px;
     height: 115px;
@@ -220,10 +276,10 @@ section {
       width: 50px;
       height: 24px; } }
 
-@media screen and (min-device-width: 480px) and (max-device-width: 769px){
+@media screen and (min-device-width: 480px) and (max-device-width: 769px) {
   .third .form-wraper {
     width: 350px;
-     }
+    height: 320px; }
     .third .form-wraper .wraper {
       border-radius: 10px; }
   .third .modal {
