@@ -1,32 +1,32 @@
 let currentPage = 'first';
 let autoScrolling = false;
-let firstHeight = $('.first').offset().top;
-let secondHeight = $('.second').offset().top;
-let thirdHeight = $('.third').offset().top
-
+let firstOffset = $('.first').offset().top;
+let secondOffset = $('.second').offset().top;
+let thirdOffset = $('.third').offset().top
+console.log(firstOffset+" " + secondOffset + " " + thirdOffset)
 $(document).scroll(e => {
     let scrolled = $(window).scrollTop();
     if (!autoScrolling) {
         switch (true) {
             case scrolled > 1 && currentPage == 'first':
-                scrollPage(secondHeight, 'second');
+                scrollTo(secondOffset, 'second');
                 break;
-            case scrolled > secondHeight && currentPage == 'second':
-                scrollPage(thirdHeight, 'third');
+            case scrolled > secondOffset && currentPage == 'second':
+                scrollTo(thirdOffset, 'third');
                 break;
-            case scrolled < thirdHeight && currentPage == 'third':
-                scrollPage(secondHeight, 'second');
+            case scrolled < thirdOffset && currentPage == 'third':
+                scrollTo(secondOffset, 'second');
                 break
-            case scrolled < secondHeight && currentPage == 'second':
-                scrollPage(firstHeight, 'first');
+            case scrolled < secondOffset && currentPage == 'second':
+                scrollTo(firstOffset, 'first');
                 break
         }
     }
 
-    function scrollPage(nextHeight, page) {
+    function scrollTo(nextOffset, page) {
         currentPage = page;
         autoScrolling = true;
-        $('body,html').animate({ scrollTop: nextHeight }, 600, () => {
+        $('body,html').animate({ scrollTop: nextOffset }, 600, () => {
             autoScrolling = false;
         });
     }
@@ -52,20 +52,19 @@ function moveCarusel(e) {
             caruselSlide = 0
         }
         checkSelect("select", ".navigation", caruselSlide)
-
-    } else {
-        if (caruselSlide == 0) {
-            $(".carusel-items").animate({ left: `${-pos}` }, 50);
-            caruselSlide = 1;
-        } else if (caruselSlide == 1) {
-            $(".carusel-items").animate({ left: `${-pos * 2}` }, 50);
-            caruselSlide = 2;
-        } else {
-            $(".carusel-items").animate({ left: `${0}` }, 50);
-            caruselSlide = 0;
-        }
-        checkSelect("select", ".navigation", caruselSlide)
+        return
     }
+    if (caruselSlide == 0) {
+        $(".carusel-items").animate({ left: `${-pos}` }, 50);
+        caruselSlide = 1;
+    } else if (caruselSlide == 1) {
+        $(".carusel-items").animate({ left: `${-pos * 2}` }, 50);
+        caruselSlide = 2;
+    } else {
+        $(".carusel-items").animate({ left: `${0}` }, 50);
+        caruselSlide = 0;
+    }
+    checkSelect("select", ".navigation", caruselSlide)
 }
 
 function checkSelect(addClass, perents, caruselSlide) {
@@ -108,7 +107,7 @@ let validationState = {
 }
 
 $("#name").change(() => {
-    validationInput("name", "email", /[a-z]*[a-zA-Z][^\W*\d]{1,15}$/g, "Name must contain only letters!")
+    validationInput("name", "email", /(^[а-яёА-ЯЁ]{2,15}$|^[a-zA-Z]{2,15}$)/g, "Name must contain only letters!")
 })
 
 $("#email").change(() => {
@@ -147,23 +146,27 @@ $("#message").change(() => {
 })
 
 $("#send").click((e) => {
-    console.log(validationState)
     e.preventDefault()
     for (let val in validationState) {
-        if (validationState[val] == false) {
-            $(`#${val}`).css("transform", "translate(2%,0)"),
-                setTimeout(() => {
-                    $(`#${val}`).css("transform", "translate(-2%,0)")
-                }, 200);
-            setTimeout(() => {
-                $(`#${val}`).css("transform", "translate(0,0)")
-            }, 400);
+        if (!validationState[val]) {
+            shakeInvalidForm(val)
             return
         }
     }
+    sendForm()
+})
+
+function shakeInvalidForm(element) {
+    $(`#${element}`).css("transform", "translate(2%,0)"),
+    setTimeout(() => $(`#${element}`).css("transform", "translate(-2%,0)"), 200);
+    setTimeout(() => $(`#${element}`).css("transform", "translate(0,0)"), 400);
+    $(`#${element}`).css({ border: "1px solid crimson" })
+}
+
+function sendForm() {
     $(".form-wraper").css("transform", "translate(0,100vh)")
     $(".modal").css("transform", "translate(0,0)")
-})
+}
 
 $(".modal button").click(() => {
     $(".form-wraper").css("transform", "translate(0,0)")
