@@ -26,7 +26,7 @@ $(document).scroll(e => {
     function scrollTo(nextOffset, page) {
         currentPage = page;
         autoScrolling = true;
-        $('body,html').animate({ scrollTop: nextOffset }, 500, () => {
+        $('body,html').animate({ scrollTop: nextOffset }, 600, () => {
             autoScrolling = false;
         });
     }
