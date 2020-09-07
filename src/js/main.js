@@ -1,36 +1,42 @@
-let currentPage = 'first';
-let autoScrolling = false;
-let firstOffset = $('.first').offset().top;
-let secondOffset = $('.second').offset().top;
-let thirdOffset = $('.third').offset().top
+let finish = false
+let section = 0;
+let previousScroll = 0
 
-$(document).scroll(e => {
-    let scrolled = $(window).scrollTop();
-    if (!autoScrolling) {
-        switch (true) {
-            case scrolled > 1 && currentPage == 'first':
-                scrollTo(secondOffset, 'second');
-                break;
-            case scrolled > secondOffset && currentPage == 'second':
-                scrollTo(thirdOffset, 'third');
-                break;
-            case scrolled < thirdOffset && currentPage == 'third':
-                scrollTo(secondOffset, 'second');
-                break
-            case scrolled < secondOffset && currentPage == 'second':
-                scrollTo(firstOffset, 'first');
-                break
+returnToStart()
+
+setTimeout(() => {
+    $(window).scroll(e => {
+        let currentScroll = $(window).scrollTop();
+        if (currentScroll > previousScroll) {
+            previousScroll = currentScroll
+            if (!finish && section == 0) {
+                $(".wrapper").css("transform", `translateY(-100vh)`)
+                setTimeout(() => section = 1, 500)
+            }
+            if (!finish && section == 1) {
+                $(window).scrollTop($(document).height())
+                $(".wrapper").css("transform", `translateY(-200vh)`)
+                setTimeout(() => {section = 2;finish = true;}, 500)
+            }
+        } else {
+            previousScroll = currentScroll
+            if (finish && section == 2) {
+                $(".wrapper").css("transform", `translateY(-100vh)`)
+                setTimeout(() => section = 1, 500)
+            }
+            if (finish && section == 1) {
+                $(window).scrollTop(0)
+                $(".wrapper").css("transform", `translateY(0vh)`)
+                setTimeout(() => {section = 0;finish = false}, 500)
+            }
         }
-    }
+    })
+}, 20)
 
-    function scrollTo(nextOffset, page) {
-        currentPage = page;
-        autoScrolling = true;
-        $('body,html').animate({ scrollTop: nextOffset }, 600, () => {
-            autoScrolling = false;
-        });
-    }
-})
+function returnToStart() {
+    setTimeout(() => $(document).scrollTop(0), 100)
+    document.location.href = '#';
+}
 
 let caruselSlide = 0;
 
@@ -158,7 +164,7 @@ $("#send").click((e) => {
 
 function shakeInvalidForm(element) {
     $(`#${element}`).css("transform", "translate(2%,0)"),
-    setTimeout(() => $(`#${element}`).css("transform", "translate(-2%,0)"), 200);
+        setTimeout(() => $(`#${element}`).css("transform", "translate(-2%,0)"), 200);
     setTimeout(() => $(`#${element}`).css("transform", "translate(0,0)"), 400);
     $(`#${element}`).css({ border: "1px solid crimson" })
 }
@@ -181,3 +187,5 @@ function formRest() {
     $("#name,#email,#message").css({ border: "none" })
     $("form")[0].reset()
 }
+
+

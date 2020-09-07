@@ -4,11 +4,17 @@
   box-sizing: border-box; }
 
 body {
-  overflow-x: hidden; }
+  overflow-x: hidden;
+  height: 500vh; }
 
 section {
   width: 100vw;
   height: 100vh; }
+
+.wrapper {
+  position: fixed;
+  transform: translateY(0);
+  transition: 0.7s; }
 
 .first {
   background-color: #a7233d; }
@@ -30,13 +36,17 @@ section {
       display: flex;
       justify-content: space-around;
       align-items: center; }
-      .first .carusel .navigation .first-block, .first .carusel .navigation .second-block, .first .carusel .navigation .third-block {
+      .first .carusel .navigation .first-block,
+      .first .carusel .navigation .second-block,
+      .first .carusel .navigation .third-block {
         width: 15%;
         height: 10%;
         background-color: black;
         cursor: pointer;
         transition: 0.2s all; }
-        .first .carusel .navigation .first-block:hover, .first .carusel .navigation .second-block:hover, .first .carusel .navigation .third-block:hover {
+        .first .carusel .navigation .first-block:hover,
+        .first .carusel .navigation .second-block:hover,
+        .first .carusel .navigation .third-block:hover {
           height: 20%; }
       .first .carusel .navigation .select {
         height: 20%; }
@@ -48,7 +58,8 @@ section {
     z-index: 1;
     cursor: pointer;
     box-shadow: inset rgba(0, 0, 0, 0.6) 0 -2px 5px, inset rgba(252, 255, 255, 0.7) 0 2px 5px, rgba(0, 0, 0, 0.596) 0 2px 5px 2px; }
-  .first #left, .first #right {
+  .first #left,
+  .first #right {
     top: 50%; }
   .first #left {
     left: 2%; }
@@ -291,3 +302,15 @@ section {
     .third .modal button {
       width: 50px;
       height: 24px; } }
+
+.main-wrapper {
+  width: 100vw;
+  height: 100.3vh;
+  overflow: hidden; }
+  .main-wrapper .content {
+    transform: translate(0, 0vh);
+    transition: all 0.5s; }
+
+.click {
+  z-index: -1;
+  position: absolute; }
